@@ -36,7 +36,6 @@ const saveToIndexedDB = async (data: CounterData): Promise<void> => {
     return new Promise((resolve, reject) => {
       const request = store.put(data, 'counterData')
       request.onsuccess = () => {
-        console.log('Data saved to IndexedDB:', data)
         resolve()
       }
       request.onerror = () => {
@@ -59,7 +58,6 @@ const loadFromIndexedDB = async (): Promise<CounterData | null> => {
       const request = store.get('counterData')
       request.onsuccess = () => {
         const result = request.result
-        console.log('Data loaded from IndexedDB:', result)
         resolve(result || null)
       }
       request.onerror = () => {
@@ -83,15 +81,11 @@ function App() {
   // Load data from IndexedDB on mount
   useEffect(() => {
     const loadData = async () => {
-      console.log('Loading data from IndexedDB...')
       const savedData = await loadFromIndexedDB()
       if (savedData) {
-        console.log('Found saved data:', savedData)
         setCount(savedData.count)
         setLimit(savedData.limit)
         setTempLimitInput(savedData.limit.toString())
-      } else {
-        console.log('No saved data found, using defaults')
       }
       setIsDataLoaded(true)
     }
@@ -104,7 +98,6 @@ function App() {
     
     const saveData = async () => {
       const dataToSave = { count, limit }
-      console.log('Saving data to IndexedDB:', dataToSave)
       await saveToIndexedDB(dataToSave)
     }
     
@@ -114,7 +107,8 @@ function App() {
   // Vibrate function
   const vibrate = useCallback(() => {
     if ('vibrate' in navigator) {
-      navigator.vibrate([200, 100, 200])
+      // More noticeable vibration pattern: long-short-long-short-long
+      navigator.vibrate([300, 100, 300, 100, 300])
     }
   }, [])
 
