@@ -1,0 +1,31 @@
+services:
+  # Development service
+  tiny-tally-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - tiny-tally-network
+
+  # Production service
+  tiny-tally-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4173:4173"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - tiny-tally-network
+
+networks:
+  tiny-tally-network:
+    driver: bridge
