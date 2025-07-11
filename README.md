@@ -1,69 +1,36 @@
-# React + TypeScript + Vite
+# Tiny Tally - Buddhist Bead Counter App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimalist digital counter app designed for **Tiny (Thant Htet Htet Nyein)** to assist with Buddhist meditation and prayer bead counting (ပုတီးစိတ်).
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app serves as a digital alternative to traditional Buddhist prayer beads (mala/rosary), helping practitioners keep count during meditation, mantra recitation, and spiritual practices. The clean, distraction-free interface allows for focused spiritual practice.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Tap Anywhere Counting**: Simply tap the screen to increment the counter
+- **Customizable Limit**: Set your target count (default: 108 - traditional Buddhist mala count)
+- **Haptic Feedback**: Phone vibrates when you reach your target count
+- **Persistent Storage**: Your count and settings are automatically saved
+- **Dark Theme**: Smooth black background with white text for comfortable use
+- **Correction Tools**: 
+  - Minus button for accidental taps
+  - Reset button to start over
+- **Mobile Optimized**: Designed for touch devices with large, accessible buttons
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## How to Use
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **Set Your Limit**: Tap the ⚙️ settings button to set your target count (traditional Buddhist practice uses 108)
+2. **Start Counting**: Tap anywhere on the screen to increment the counter
+3. **Reach Your Goal**: The phone will vibrate when you reach your limit
+4. **Corrections**: Use the "-" button if you accidentally tap, or "Reset" to start over
+5. **Continue**: Your progress is automatically saved, even if you close the app
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Buddhist Context
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+In Buddhist tradition, 108 is considered a sacred number representing:
+- 108 defilements to overcome
+- 108 beads on a traditional mala
+- Various spiritual significances in Buddhist cosmology
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This digital counter honors that tradition while providing the convenience of modern technology for meditation practice.
