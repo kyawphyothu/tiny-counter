@@ -78,6 +78,11 @@ function App() {
   const [tempLimitInput, setTempLimitInput] = useState('108')
   const [isDataLoaded, setIsDataLoaded] = useState(false)
 
+  // Calculate cycles and remainder based on count and limit
+  const cycles = Math.floor(count / limit)
+  const remainder = count % limit
+  const displayCount = remainder === 0 && count > 0 ? limit : remainder
+
   // Load data from IndexedDB on mount
   useEffect(() => {
     const loadData = async () => {
@@ -116,7 +121,9 @@ function App() {
   const increment = useCallback(() => {
     setCount(prev => {
       const newCount = prev + 1
-      if (newCount >= limit) {
+      const newRemainder = newCount % limit
+      // Vibrate only when completing a full cycle (remainder becomes 0)
+      if (newRemainder === 0 && newCount > 0) {
         vibrate()
       }
       return newCount
@@ -196,9 +203,16 @@ function App() {
 
       {/* Main Counter Display */}
       <div className="counter-display">
-        <div className="count">{count}</div>
-        <div className="limit-info">
-          Limit: {limit} {count >= limit && <span className="limit-reached">✓ REACHED!</span>}
+        {/* Luxury Cycles Display at Top */}
+        <div className="cycles-luxury">
+          <span className="cycles-label">CYCLES</span>
+          <span className="cycles-number">{cycles}</span>
+        </div>
+        
+        <div className="count">{displayCount}</div>
+        
+        <div className="limit-minimal">
+          / {limit} {remainder === 0 && count > 0 && <span className="cycle-complete">●</span>}
         </div>
       </div>
 
