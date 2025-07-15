@@ -11,6 +11,18 @@ interface CounterData {
   limit: number
 }
 
+interface CatExplosion {
+  id: string
+  x: number
+  y: number
+  cats: Array<{
+    id: string
+    x: number
+    y: number
+    svgPath: string
+  }>
+}
+
 const openDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION)
@@ -77,6 +89,7 @@ function App() {
   const [showSettings, setShowSettings] = useState(false)
   const [tempLimitInput, setTempLimitInput] = useState('108')
   const [isDataLoaded, setIsDataLoaded] = useState(false)
+  const [catExplosions, setCatExplosions] = useState<CatExplosion[]>([])
 
   // Calculate cycles and remainder based on count and limit
   const cycles = Math.floor(count / limit)
@@ -117,6 +130,40 @@ function App() {
     }
   }, [])
 
+  // Create cat explosion at touch location
+  const createCatExplosion = useCallback((clientX: number, clientY: number) => {
+    const catSvgs = ['/angry-cat.svg', '/cute-cat.svg', '/japanese-cat.svg']
+    const explosionId = Date.now().toString() + Math.random().toString(36).substr(2, 9)
+    
+    const numCats = 12 // More cats for better effect
+    const cats = Array.from({ length: numCats }, (_, i) => {
+      const angle = (i * (360 / numCats)) * (Math.PI / 180) // Evenly distribute around circle
+      const distance = 60 + Math.random() * 40 // Random distance between 60-100px
+      const randomVariation = (Math.random() - 0.5) * 20 // Add some randomness
+      
+      return {
+        id: `cat-${explosionId}-${i}`,
+        x: Math.cos(angle) * distance + randomVariation,
+        y: Math.sin(angle) * distance + randomVariation,
+        svgPath: catSvgs[Math.floor(Math.random() * catSvgs.length)]
+      }
+    })
+    
+    const explosion: CatExplosion = {
+      id: explosionId,
+      x: clientX,
+      y: clientY,
+      cats
+    }
+    
+    setCatExplosions(prev => [...prev, explosion])
+    
+    // Remove explosion after animation completes
+    setTimeout(() => {
+      setCatExplosions(prev => prev.filter(exp => exp.id !== explosionId))
+    }, 2500)
+  }, [])
+
   // Increment counter
   const increment = useCallback(() => {
     setCount(prev => {
@@ -148,8 +195,12 @@ function App() {
         (e.target as HTMLElement).closest('.controls')) {
       return
     }
+    
+    // Create cat explosion at touch location
+    createCatExplosion(e.clientX, e.clientY)
+    
     increment()
-  }, [increment])
+  }, [increment, createCatExplosion])
 
   // Save limit settings
   const saveLimit = useCallback(() => {
@@ -176,6 +227,36 @@ function App() {
 
   return (
     <div className="app" onClick={handleScreenClick}>
+      {/* Cat Explosions */}
+      {catExplosions.map((explosion) => (
+        <div
+          key={explosion.id}
+          className="cat-explosion"
+          style={{
+            left: explosion.x,
+            top: explosion.y,
+          }}
+        >
+          {explosion.cats.map((cat) => (
+            <div
+              key={cat.id}
+              className="cat-item"
+              style={{
+                '--cat-x': `${cat.x}px`,
+                '--cat-y': `${cat.y}px`
+              } as React.CSSProperties}
+            >
+              <img 
+                src={cat.svgPath} 
+                alt="cat" 
+                className="cat-svg"
+                draggable={false}
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+
       {/* Settings Panel */}
       {showSettings && (
         <div className="settings" onClick={(e) => e.stopPropagation()}>
