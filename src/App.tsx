@@ -91,6 +91,22 @@ function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false)
   const [catExplosions, setCatExplosions] = useState<CatExplosion[]>([])
 
+  // Preload SVGs when the component mounts
+  useEffect(() => {
+    const preloadSVGs = () => {
+      const catSvgs = ['/angry-cat.svg', '/cute-cat.svg', '/japanese-cat.svg']
+      catSvgs.forEach(svgPath => {
+        const img = new Image()
+        img.src = svgPath
+        // Optionally handle load/error events
+        img.onload = () => console.log(`Preloaded: ${svgPath}`)
+        img.onerror = () => console.warn(`Failed to preload: ${svgPath}`)
+      })
+    }
+    
+    preloadSVGs()
+  }, [])
+
   // Calculate cycles and remainder based on count and limit
   const cycles = Math.floor(count / limit)
   const remainder = count % limit
