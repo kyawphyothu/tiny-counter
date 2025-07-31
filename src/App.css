@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('/fonts/Courier_Prime/CourierPrime-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +14,7 @@
 
 body, html {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
@@ -52,30 +60,61 @@ body, html {
 
 .cycles-label {
   font-size: 11px;
-  font-weight: 300;
+  font-weight: bold;
   letter-spacing: 2px;
   color: #8b5a8c;
   text-transform: uppercase;
+  font-family: 'Courier Prime', 'Courier New', monospace;
 }
 
 .cycles-number {
   font-size: 24px;
-  font-weight: 200;
+  font-weight: bold;
   color: #d63384;
   min-height: 30px;
   display: flex;
   align-items: center;
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Courier Prime', 'Courier New', monospace;
 }
 
 .count {
   font-size: clamp(80px, 20vw, 200px);
-  font-weight: 700;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
   text-shadow: 0 0 30px rgba(139, 90, 140, 0.3);
   transition: transform 0.1s ease;
   color: #8b5a8c;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+
+  /* iOS Liquid Glass Card Effect */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 40px 60px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 16px rgba(255, 255, 255, 0.1) inset,
+    0 -2px 16px rgba(0, 0, 0, 0.05) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.count::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%);
+  pointer-events: none;
 }
 
 .count:active {
@@ -116,23 +155,50 @@ body, html {
 }
 
 .controls button {
-  background: rgba(139, 90, 140, 0.15);
-  border: 2px solid rgba(139, 90, 140, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #8b5a8c;
   padding: 12px 20px;
-  border-radius: 25px;
+  border-radius: 20px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
   min-width: 60px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  letter-spacing: 1px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 1px 8px rgba(255, 255, 255, 0.1) inset,
+    0 -1px 8px rgba(0, 0, 0, 0.05) inset;
+}
+
+.controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%);
+  pointer-events: none;
 }
 
 .controls button:hover {
-  background: rgba(139, 90, 140, 0.25);
-  border-color: rgba(139, 90, 140, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    0 2px 12px rgba(255, 255, 255, 0.15) inset,
+    0 -2px 12px rgba(0, 0, 0, 0.08) inset;
 }
 
 .controls button:active {
@@ -140,34 +206,37 @@ body, html {
 }
 
 .minus-btn {
-  background: rgba(214, 51, 132, 0.2) !important;
-  border-color: rgba(214, 51, 132, 0.4) !important;
+  background: rgba(214, 51, 132, 0.15) !important;
+  border-color: rgba(214, 51, 132, 0.3) !important;
   color: #d63384 !important;
 }
 
 .minus-btn:hover {
-  background: rgba(214, 51, 132, 0.3) !important;
+  background: rgba(214, 51, 132, 0.25) !important;
+  border-color: rgba(214, 51, 132, 0.4) !important;
 }
 
 .reset-btn {
-  background: rgba(255, 165, 0, 0.3) !important;
-  border-color: rgba(255, 165, 0, 0.6) !important;
+  background: rgba(255, 165, 0, 0.15) !important;
+  border-color: rgba(255, 165, 0, 0.3) !important;
   color: #ff8c00 !important;
 }
 
 .reset-btn:hover {
-  background: rgba(255, 165, 0, 0.4) !important;
+  background: rgba(255, 165, 0, 0.25) !important;
+  border-color: rgba(255, 165, 0, 0.4) !important;
 }
 
 .settings-btn {
-  background: rgba(139, 90, 140, 0.2) !important;
-  border-color: rgba(139, 90, 140, 0.4) !important;
+  background: rgba(139, 90, 140, 0.15) !important;
+  border-color: rgba(139, 90, 140, 0.3) !important;
   font-size: 18px;
   color: #8b5a8c !important;
 }
 
 .settings-btn:hover {
-  background: rgba(139, 90, 140, 0.3) !important;
+  background: rgba(139, 90, 140, 0.25) !important;
+  border-color: rgba(139, 90, 140, 0.4) !important;
 }
 
 .instruction {
@@ -179,6 +248,10 @@ body, html {
   font-size: 14px;
   text-align: center;
   opacity: 0.7;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(139, 90, 140, 0.2);
 }
 
 .settings {
@@ -209,6 +282,10 @@ body, html {
   margin-bottom: 25px;
   font-size: 24px;
   color: #8b5a8c;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(139, 90, 140, 0.2);
 }
 
 .setting-item {
@@ -222,6 +299,10 @@ body, html {
   color: #8b5a8c;
   font-size: 16px;
   text-align: left;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(139, 90, 140, 0.2);
 }
 
 .setting-item input {
@@ -234,6 +315,10 @@ body, html {
   width: 100%;
   text-align: center;
   min-height: 48px;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-feature-settings: "tnum" 1, "zero" 1;
 }
 
 .setting-item input:focus {
@@ -249,28 +334,54 @@ body, html {
 }
 
 .settings-buttons button {
-  background: rgba(214, 51, 132, 0.2);
-  border: 1px solid rgba(214, 51, 132, 0.4);
+  background: rgba(214, 51, 132, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(214, 51, 132, 0.3);
   color: #d63384;
   padding: 10px 20px;
   border-radius: 12px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(255, 255, 255, 0.1) inset;
+}
+
+.settings-buttons button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%);
+  pointer-events: none;
 }
 
 .settings-buttons button:hover {
-  background: rgba(214, 51, 132, 0.3);
+  background: rgba(214, 51, 132, 0.25);
+  border-color: rgba(214, 51, 132, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(255, 255, 255, 0.15) inset;
 }
 
 .settings-buttons button:last-child {
-  background: rgba(139, 90, 140, 0.2);
-  border-color: rgba(139, 90, 140, 0.4);
+  background: rgba(139, 90, 140, 0.15);
+  border-color: rgba(139, 90, 140, 0.3);
   color: #8b5a8c;
 }
 
 .settings-buttons button:last-child:hover {
-  background: rgba(139, 90, 140, 0.3);
+  background: rgba(139, 90, 140, 0.25);
+  border-color: rgba(139, 90, 140, 0.4);
 }
 
 /* Cats explosion effect */
