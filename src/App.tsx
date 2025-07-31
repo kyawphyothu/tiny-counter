@@ -110,7 +110,7 @@ function App() {
   // Calculate cycles and remainder based on count and limit
   const cycles = Math.floor(count / limit)
   const remainder = count % limit
-  const displayCount = remainder === 0 && count > 0 ? limit : remainder
+  const displayCount = (remainder === 0 && count > 0 ? limit : remainder).toString().padStart(2, '0')
 
   // Load data from IndexedDB on mount
   useEffect(() => {
