@@ -26,10 +26,10 @@ interface CatExplosion {
 const openDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION)
-    
+
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve(request.result)
-    
+
     request.onupgradeneeded = () => {
       const db = request.result
       if (!db.objectStoreNames.contains(STORE_NAME)) {
@@ -44,7 +44,7 @@ const saveToIndexedDB = async (data: CounterData): Promise<void> => {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readwrite')
     const store = transaction.objectStore(STORE_NAME)
-    
+
     return new Promise((resolve, reject) => {
       const request = store.put(data, 'counterData')
       request.onsuccess = () => {
@@ -65,7 +65,7 @@ const loadFromIndexedDB = async (): Promise<CounterData | null> => {
     const db = await openDB()
     const transaction = db.transaction([STORE_NAME], 'readonly')
     const store = transaction.objectStore(STORE_NAME)
-    
+
     return new Promise((resolve) => {
       const request = store.get('counterData')
       request.onsuccess = () => {
@@ -103,7 +103,7 @@ function App() {
         img.onerror = () => console.warn(`Failed to preload: ${svgPath}`)
       })
     }
-    
+
     preloadSVGs()
   }, [])
 
@@ -129,12 +129,12 @@ function App() {
   // Save to IndexedDB whenever count or limit changes (only after initial load)
   useEffect(() => {
     if (!isDataLoaded) return // Don't save until we've loaded from IndexedDB
-    
+
     const saveData = async () => {
       const dataToSave = { count, limit }
       await saveToIndexedDB(dataToSave)
     }
-    
+
     saveData()
   }, [count, limit, isDataLoaded])
 
@@ -150,13 +150,13 @@ function App() {
   const createCatExplosion = useCallback((clientX: number, clientY: number) => {
     const catSvgs = ['/angry-cat.svg', '/cute-cat.svg', '/japanese-cat.svg']
     const explosionId = Date.now().toString() + Math.random().toString(36).substr(2, 9)
-    
+
     const numCats = 12 // More cats for better effect
     const cats = Array.from({ length: numCats }, (_, i) => {
       const angle = (i * (360 / numCats)) * (Math.PI / 180) // Evenly distribute around circle
       const distance = 60 + Math.random() * 40 // Random distance between 60-100px
       const randomVariation = (Math.random() - 0.5) * 20 // Add some randomness
-      
+
       return {
         id: `cat-${explosionId}-${i}`,
         x: Math.cos(angle) * distance + randomVariation,
@@ -164,16 +164,16 @@ function App() {
         svgPath: catSvgs[Math.floor(Math.random() * catSvgs.length)]
       }
     })
-    
+
     const explosion: CatExplosion = {
       id: explosionId,
       x: clientX,
       y: clientY,
       cats
     }
-    
+
     setCatExplosions(prev => [...prev, explosion])
-    
+
     // Remove explosion after animation completes
     setTimeout(() => {
       setCatExplosions(prev => prev.filter(exp => exp.id !== explosionId))
@@ -206,15 +206,15 @@ function App() {
   // Handle screen click (but not on buttons)
   const handleScreenClick = useCallback((e: React.MouseEvent) => {
     // Don't increment if clicking on buttons or settings
-    if ((e.target as HTMLElement).tagName === 'BUTTON' || 
+    if ((e.target as HTMLElement).tagName === 'BUTTON' ||
         (e.target as HTMLElement).closest('.settings') ||
         (e.target as HTMLElement).closest('.controls')) {
       return
     }
-    
+
     // Create cat explosion at touch location
     createCatExplosion(e.clientX, e.clientY)
-    
+
     increment()
   }, [increment, createCatExplosion])
 
@@ -262,9 +262,9 @@ function App() {
                 '--cat-y': `${cat.y}px`
               } as React.CSSProperties}
             >
-              <img 
-                src={cat.svgPath} 
-                alt="cat" 
+              <img
+                src={cat.svgPath}
+                alt="cat"
                 className="cat-svg"
                 draggable={false}
               />
@@ -305,9 +305,9 @@ function App() {
           <span className="cycles-label">CYCLES</span>
           <span className="cycles-number">{cycles}</span>
         </div>
-        
+
         <div className="count">{displayCount}</div>
-        
+
         <div className="limit-minimal">
           / {limit} {remainder === 0 && count > 0 && <span className="cycle-complete">●</span>}
         </div>

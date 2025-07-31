@@ -18,8 +18,8 @@ body, html {
 
 .app {
   height: 100vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-  color: white;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  color: #4a4a4a;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,14 +54,14 @@ body, html {
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 2px;
-  color: #666;
+  color: #8b5a8c;
   text-transform: uppercase;
 }
 
 .cycles-number {
   font-size: 24px;
   font-weight: 200;
-  color: #4CAF50;
+  color: #d63384;
   min-height: 30px;
   display: flex;
   align-items: center;
@@ -73,8 +73,9 @@ body, html {
   font-weight: 700;
   text-align: center;
   margin-bottom: 20px;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 0 30px rgba(139, 90, 140, 0.3);
   transition: transform 0.1s ease;
+  color: #8b5a8c;
 }
 
 .count:active {
@@ -83,7 +84,7 @@ body, html {
 
 .limit-minimal {
   font-size: clamp(18px, 4vw, 28px);
-  color: #666;
+  color: #8b5a8c;
   text-align: center;
   margin-bottom: 40px;
   font-weight: 300;
@@ -94,7 +95,7 @@ body, html {
 }
 
 .cycle-complete {
-  color: #4CAF50;
+  color: #d63384;
   font-size: 12px;
   animation: pulse-dot 1.5s infinite;
 }
@@ -115,9 +116,9 @@ body, html {
 }
 
 .controls button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(139, 90, 140, 0.15);
+  border: 2px solid rgba(139, 90, 140, 0.3);
+  color: #8b5a8c;
   padding: 12px 20px;
   border-radius: 25px;
   font-size: 16px;
@@ -129,8 +130,8 @@ body, html {
 }
 
 .controls button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(139, 90, 140, 0.25);
+  border-color: rgba(139, 90, 140, 0.5);
   transform: translateY(-2px);
 }
 
@@ -139,31 +140,34 @@ body, html {
 }
 
 .minus-btn {
-  background: rgba(255, 59, 48, 0.2) !important;
-  border-color: rgba(255, 59, 48, 0.4) !important;
+  background: rgba(214, 51, 132, 0.2) !important;
+  border-color: rgba(214, 51, 132, 0.4) !important;
+  color: #d63384 !important;
 }
 
 .minus-btn:hover {
-  background: rgba(255, 59, 48, 0.3) !important;
+  background: rgba(214, 51, 132, 0.3) !important;
 }
 
 .reset-btn {
-  background: rgba(255, 149, 0, 0.2) !important;
-  border-color: rgba(255, 149, 0, 0.4) !important;
+  background: rgba(255, 165, 0, 0.3) !important;
+  border-color: rgba(255, 165, 0, 0.6) !important;
+  color: #ff8c00 !important;
 }
 
 .reset-btn:hover {
-  background: rgba(255, 149, 0, 0.3) !important;
+  background: rgba(255, 165, 0, 0.4) !important;
 }
 
 .settings-btn {
-  background: rgba(0, 122, 255, 0.2) !important;
-  border-color: rgba(0, 122, 255, 0.4) !important;
+  background: rgba(139, 90, 140, 0.2) !important;
+  border-color: rgba(139, 90, 140, 0.4) !important;
   font-size: 18px;
+  color: #8b5a8c !important;
 }
 
 .settings-btn:hover {
-  background: rgba(0, 122, 255, 0.3) !important;
+  background: rgba(139, 90, 140, 0.3) !important;
 }
 
 .instruction {
@@ -171,7 +175,7 @@ body, html {
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  color: #666;
+  color: #8b5a8c;
   font-size: 14px;
   text-align: center;
   opacity: 0.7;
@@ -183,7 +187,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(139, 90, 140, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,10 +196,10 @@ body, html {
 }
 
 .settings-content {
-  background: rgba(30, 30, 30, 0.95);
+  background: rgba(254, 207, 239, 0.95);
   padding: 30px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(139, 90, 140, 0.2);
   min-width: 300px;
   text-align: center;
   backdrop-filter: blur(20px);
@@ -204,7 +208,7 @@ body, html {
 .settings-content h3 {
   margin-bottom: 25px;
   font-size: 24px;
-  color: white;
+  color: #8b5a8c;
 }
 
 .setting-item {
@@ -215,15 +219,15 @@ body, html {
 }
 
 .setting-item label {
-  color: #ccc;
+  color: #8b5a8c;
   font-size: 16px;
   text-align: left;
 }
 
 .setting-item input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(139, 90, 140, 0.1);
+  border: 1px solid rgba(139, 90, 140, 0.3);
+  color: #8b5a8c;
   padding: 12px 16px;
   border-radius: 12px;
   font-size: 18px;
@@ -234,8 +238,8 @@ body, html {
 
 .setting-item input:focus {
   outline: none;
-  border-color: rgba(0, 122, 255, 0.6);
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+  border-color: rgba(214, 51, 132, 0.6);
+  box-shadow: 0 0 0 2px rgba(214, 51, 132, 0.2);
 }
 
 .settings-buttons {
@@ -245,9 +249,9 @@ body, html {
 }
 
 .settings-buttons button {
-  background: rgba(0, 122, 255, 0.2);
-  border: 1px solid rgba(0, 122, 255, 0.4);
-  color: white;
+  background: rgba(214, 51, 132, 0.2);
+  border: 1px solid rgba(214, 51, 132, 0.4);
+  color: #d63384;
   padding: 10px 20px;
   border-radius: 12px;
   font-size: 14px;
@@ -256,16 +260,17 @@ body, html {
 }
 
 .settings-buttons button:hover {
-  background: rgba(0, 122, 255, 0.3);
+  background: rgba(214, 51, 132, 0.3);
 }
 
 .settings-buttons button:last-child {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(139, 90, 140, 0.2);
+  border-color: rgba(139, 90, 140, 0.4);
+  color: #8b5a8c;
 }
 
 .settings-buttons button:last-child:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(139, 90, 140, 0.3);
 }
 
 /* Cats explosion effect */
@@ -336,18 +341,18 @@ body, html {
     bottom: 20px;
     gap: 15px;
   }
-  
+
   .controls button {
     padding: 10px 16px;
     font-size: 14px;
     min-width: 50px;
   }
-  
+
   .instruction {
     top: 20px;
     font-size: 12px;
   }
-  
+
   .settings-content {
     margin: 20px;
     padding: 25px;
