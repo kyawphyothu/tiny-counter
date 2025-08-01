@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
+import catPlayingCup from "./assets/gif/cat-playing-cup.gif"
 
 // IndexedDB utilities
 const DB_NAME = 'TallyCounterDB'
@@ -305,6 +306,8 @@ function App() {
           <span className="cycles-label">CYCLES</span>
           <span className="cycles-number">{cycles}</span>
         </div>
+
+        <img src={catPlayingCup} style={{ width: "100px" }} alt='Cat Playing...' />
 
         <div className="count">{displayCount}</div>
 
