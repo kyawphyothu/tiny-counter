@@ -307,9 +307,15 @@ function App() {
           <span className="cycles-number">{cycles}</span>
         </div>
 
-        <img src={catPlayingCup} style={{ width: "100px" }} alt='Cat Playing...' />
+        <div className="count-container">
+          <img
+            src={catPlayingCup}
+            className="cat-playing"
+            alt='Cat Playing...'
+          />
 
-        <div className="count">{displayCount}</div>
+          <div className="count">{displayCount}</div>
+        </div>
 
         <div className="limit-minimal">
           / {limit} {remainder === 0 && count > 0 && <span className="cycle-complete">●</span>}
