@@ -200,9 +200,9 @@ body, html {
   pointer-events: none;
 }
 
-.count:active {
+/* .count:active {
   transform: scale(0.95);
-}
+} */
 
 .limit-minimal {
   font-size: clamp(18px, 4vw, 28px);
